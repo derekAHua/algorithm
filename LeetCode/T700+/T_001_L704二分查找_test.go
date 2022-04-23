@@ -19,7 +19,7 @@ func TestSearch(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if gotRet := search(tt.args.nums, tt.args.target); gotRet != tt.wantRet {
+			if gotRet := searchRepeat1(tt.args.nums, tt.args.target); gotRet != tt.wantRet {
 				t.Errorf("Search() = %v, want %v", gotRet, tt.wantRet)
 			}
 		})
