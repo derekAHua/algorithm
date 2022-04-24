@@ -2,14 +2,6 @@ package T200_
 
 // https://leetcode-cn.com/problems/minimum-size-subarray-sum/
 
-/*
-给定一个含有 n 个正整数的数组和一个正整数 s ，找出该数组中满足其和 ≥ s 的长度最小的 连续 子数组，并返回其长度。如果不存在符合条件的子数组，返回 0。
-
-示例：
-
-输入：s = 7, nums = [2,3,1,2,4,3] 输出：2 解释：子数组 [4,3] 是该条件下的长度最小的子数组。
-*/
-
 func minSubArrayLen(target int, nums []int) (ret int) {
 	l := len(nums)
 	if l == 0 {
@@ -35,4 +27,47 @@ func minSubArrayLen(target int, nums []int) (ret int) {
 	}
 
 	return ret
+}
+
+func minSubArrayLenRepeat1(target int, nums []int) (ret int) {
+	length := len(nums)
+	if length == 0 {
+		return 0
+	}
+
+	l, r := 0, 0
+
+	sum := nums[0]
+	ret = length + 1
+
+	for r < length {
+		for sum < target {
+			r++
+			if r >= length {
+				if ret == length+1 {
+					return 0
+				}
+				return
+			}
+			sum += nums[r]
+		}
+
+		ret = getMin(ret, r-l+1)
+
+		for sum >= target {
+			sum -= nums[l]
+			l++
+		}
+
+		ret = getMin(ret, r-l+1+1)
+	}
+
+	return
+}
+
+func getMin(x, y int) int {
+	if x > y {
+		return y
+	}
+	return x
 }

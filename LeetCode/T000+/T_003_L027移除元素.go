@@ -17,5 +17,18 @@ func removeElement(nums []int, val int) int {
 
 func removeElementRepeat1(nums []int, val int) int {
 
-	return 0
+	var slowIndex, fastIndex int
+
+	for fastIndex < len(nums) {
+		if nums[fastIndex] == val {
+			fastIndex++
+			continue
+		}
+
+		nums[slowIndex] = nums[fastIndex]
+		fastIndex++
+		slowIndex++
+	}
+
+	return slowIndex
 }
