@@ -2,18 +2,10 @@ package T000_
 
 // https://leetcode-cn.com/problems/spiral-matrix-ii/
 
-/*
-给定一个正整数 n，生成一个包含 1 到 n^2 所有元素，且元素按顺时针顺序螺旋排列的正方形矩阵。
-
-示例:
-
-输入: 3 输出: [ [ 1, 2, 3 ], [ 8, 9, 4 ], [ 7, 6, 5 ] ]
-*/
-
 func generateMatrix(n int) (ret [][]int) {
 
 	ret = make([][]int, n)
-	for index, _ := range ret {
+	for index := range ret {
 		ret[index] = make([]int, n)
 	}
 
@@ -43,6 +35,50 @@ func generateMatrix(n int) (ret [][]int) {
 			num++
 		}
 		left++
+	}
+
+	return ret
+}
+
+func generateMatrixRepeat1(n int) (ret [][]int) {
+	ret = make([][]int, n)
+	for i := range ret {
+		ret[i] = make([]int, n)
+	}
+
+	num, tar := 1, n*n
+
+	top, bottom, left, right := 0, n-1, 0, n-1
+
+	for num < tar {
+		for i := left; i < right; i++ {
+			ret[top][i] = num
+			num++
+		}
+
+		for j := top; j < bottom; j++ {
+			ret[j][right] = num
+			num++
+		}
+
+		for i := right; i > left; i-- {
+			ret[bottom][i] = num
+			num++
+		}
+
+		for j := bottom; j > top; j-- {
+			ret[j][left] = num
+			num++
+		}
+
+		top++
+		left++
+		right--
+		bottom--
+	}
+
+	if n%2 == 1 {
+		ret[n/2][n/2] = num
 	}
 
 	return ret
