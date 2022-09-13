@@ -126,3 +126,48 @@ func generateMatrixRepeat2(n int) (ret [][]int) {
 
 	return
 }
+
+func generateMatrixRepeat3(n int) (ret [][]int) {
+	max := n * n
+
+	ret = make([][]int, n)
+	for i := range ret {
+		ret[i] = make([]int, n)
+	}
+
+	num := 1
+
+	l, r, t, b := 0, n-1, 0, n-1
+	for num < max {
+		for i := l; i < r; i++ {
+			ret[t][i] = num
+			num++
+		}
+
+		for j := t; j < b; j++ {
+			ret[j][r] = num
+			num++
+		}
+
+		for i := r; i > l; i-- {
+			ret[b][i] = num
+			num++
+		}
+
+		for j := b; j > t; j-- {
+			ret[j][l] = num
+			num++
+		}
+
+		l++
+		r--
+		t++
+		b--
+	}
+
+	if n&1 == 1 {
+		ret[n/2][n/2] = num
+	}
+
+	return
+}

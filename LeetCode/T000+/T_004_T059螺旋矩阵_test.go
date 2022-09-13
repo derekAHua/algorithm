@@ -56,7 +56,7 @@ func Test_generateMatrixRepeat1(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if gotRet := generateMatrixRepeat1(tt.args.n); !reflect.DeepEqual(gotRet, tt.wantRet) {
+			if gotRet := generateMatrixRepeat3(tt.args.n); !reflect.DeepEqual(gotRet, tt.wantRet) {
 				t.Errorf("generateMatrixRepeat1() = %v, want %v", gotRet, tt.wantRet)
 			}
 		})

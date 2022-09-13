@@ -2,6 +2,27 @@ package T700_
 
 // https://leetcode-cn.com/problems/binary-search/
 
+func search(nums []int, target int) (ret int) {
+	left, right := 0, len(nums)
+
+	for left < right {
+		mid := left + (right-left)>>1
+
+		if nums[mid] == target {
+			return mid
+		}
+
+		if nums[mid] > target {
+			right = mid
+			continue
+		}
+
+		left = mid + 1
+	}
+
+	return -1
+}
+
 func searchV2(nums []int, target int) int {
 	high := len(nums) - 1
 	low := 0
@@ -19,7 +40,7 @@ func searchV2(nums []int, target int) int {
 	return -1
 }
 
-func search(nums []int, target int) (ret int) {
+func searchV1(nums []int, target int) (ret int) {
 	right := len(nums)
 	left := 0
 
