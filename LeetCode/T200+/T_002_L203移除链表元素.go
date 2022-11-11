@@ -23,18 +23,18 @@ type ListNode struct {
 	Next *ListNode
 }
 
-func removeElements(head *ListNode, val int) *ListNode {
-	dummyHead := &ListNode{}
-	dummyHead.Next = head
+func removeElements(head *ListNode, val int) (ret *ListNode) {
+	top := &ListNode{Next: head}
 
-	cur := dummyHead
-	for cur != nil && cur.Next != nil {
+	cur := top
+	for cur.Next != nil {
 		if cur.Next.Val == val {
 			cur.Next = cur.Next.Next
-		} else {
-			cur = cur.Next
+			continue
 		}
+
+		cur = cur.Next
 	}
 
-	return dummyHead.Next
+	return top.Next
 }

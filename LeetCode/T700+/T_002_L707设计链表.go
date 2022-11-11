@@ -14,110 +14,115 @@ addAtIndex(index,val)：在链表中的第 index 个节点之前添加值为 val
 deleteAtIndex(index)：如果索引 index 有效，则删除链表中的第 index 个节点。
 */
 
-type MyLinkedList struct {
-	dummy *Node
-}
-
 type Node struct {
 	Val  int
 	Next *Node
-	Pre  *Node
 }
 
-// Constructor 仅保存哑节点，pre-> rear, next-> head
+type MyLinkedList struct {
+	Head   *Node
+	Length int
+}
+
 func Constructor() MyLinkedList {
-	rear := &Node{
-		Val:  -1,
-		Next: nil,
-		Pre:  nil,
+	return MyLinkedList{
+		Head: new(Node),
 	}
-	rear.Next = rear
-	rear.Pre = rear
-	return MyLinkedList{rear}
 }
 
-func (this *MyLinkedList) Get(index int) int {
-	cur := this.dummy.Next
-	for cur != this.dummy && index > 0 {
+func (l *MyLinkedList) Get(index int) int {
+	if index < 0 || index >= l.Length {
+		return -1
+	}
+
+	cur := l.Head
+	for index >= 0 {
 		cur = cur.Next
 		index--
-	}
-
-	if 0 != index {
-		return -1
 	}
 
 	return cur.Val
 }
 
-func (this *MyLinkedList) AddAtHead(val int) {
-	dummy := this.dummy
-	node := &Node{
+func (l *MyLinkedList) AddAtHead(val int) {
+	ins := &Node{
 		Val:  val,
-		Next: dummy.Next,
-		Pre:  dummy,
+		Next: nil,
 	}
 
-	dummy.Next.Pre = node
-	dummy.Next = node
+	next := l.Head.Next
+	l.Head.Next = ins
+	ins.Next = next
+
+	l.Length++
 }
 
-func (this *MyLinkedList) AddAtTail(val int) {
-	dummy := this.dummy
-	node := &Node{
+func (l *MyLinkedList) AddAtTail(val int) {
+	ins := &Node{
 		Val:  val,
-		Next: dummy,
-		Pre:  dummy.Pre,
+		Next: nil,
 	}
 
-	dummy.Pre.Next = node
-	dummy.Pre = node
-}
-
-func (this *MyLinkedList) AddAtIndex(index int, val int) {
-	cur := this.dummy.Next
-	for cur != this.dummy && index > 0 {
+	cur := l.Head
+	for cur.Next != nil {
 		cur = cur.Next
-		index--
 	}
 
-	if index <= 0 {
-		node := &Node{
-			Val:  val,
-			Next: cur,
-			Pre:  cur.Pre,
-		}
+	cur.Next = ins
 
-		cur.Pre.Next = node
-		cur.Pre = node
-	}
+	l.Length++
 }
 
-func (this *MyLinkedList) DeleteAtIndex(index int) {
-	//链表为空
-	if this.dummy.Next == this.dummy {
+func (l *MyLinkedList) AddAtIndex(index int, val int) {
+	if index < 0 {
+		l.AddAtHead(val)
+		return
+	}
+	if index > l.Length {
 		return
 	}
 
-	cur := this.dummy.Next
-	for cur.Next != this.dummy && index > 0 {
+	ins := &Node{
+		Val:  val,
+		Next: nil,
+	}
+
+	cur := l.Head
+	for index > 0 {
 		cur = cur.Next
 		index--
 	}
 
-	//验证index有效
-	if index == 0 {
-		cur.Next.Pre = cur.Pre
-		cur.Pre.Next = cur.Next
-		//以上两步顺序无所谓
-	}
+	next := cur.Next
+	cur.Next = ins
+	ins.Next = next
+
+	l.Length++
+
+	return
 }
 
-func (this MyLinkedList) print() {
-	head := this.dummy.Next
-	for head != this.dummy {
+func (l *MyLinkedList) DeleteAtIndex(index int) {
+	if index < 0 || index >= l.Length {
+		return
+	}
+
+	cur := l.Head
+	for index > 0 {
+		cur = cur.Next
+		index--
+	}
+
+	next := cur.Next
+	cur.Next = next.Next
+
+	l.Length--
+}
+
+func (l MyLinkedList) print() {
+	head := l.Head.Next
+	for head != nil {
 		fmt.Print(head.Val, " ")
 		head = head.Next
 	}
-	fmt.Println()
 }

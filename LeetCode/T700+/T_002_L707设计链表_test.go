@@ -5,6 +5,12 @@ import (
 	"testing"
 )
 
+func TestMyLinkedList1(t *testing.T) {
+	l := Constructor()
+	l.AddAtTail(1)
+	l.Get(1)
+}
+
 func TestMyLinkedList(t *testing.T) {
 	l := Constructor()
 	l.AddAtHead(7)
