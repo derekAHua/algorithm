@@ -6,11 +6,6 @@ package T000_
 //
 //你不能只是单纯的改变节点内部的值，而是需要实际的进行节点交换。
 
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
-
 func swapPairs(head *ListNode) *ListNode {
 	if head == nil {
 		return head

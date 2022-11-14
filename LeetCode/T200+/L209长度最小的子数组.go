@@ -71,3 +71,92 @@ func getMin(x, y int) int {
 	}
 	return x
 }
+
+func minSubArrayLenRepeat2(target int, nums []int) int {
+	length := len(nums)
+	if length == 0 {
+		return 0
+	}
+
+	ret := length + 1
+	l, r, sum := 0, 0, 0 // []
+	for r < length {
+		if sum < target {
+			sum += nums[r]
+			r++
+			continue
+		}
+
+		ret = getMin(ret, r-l)
+		sum -= nums[l]
+		l++
+	}
+
+	for l < length {
+		if sum >= target {
+			ret = getMin(ret, r-l)
+		}
+		sum -= nums[l]
+		l++
+	}
+
+	if ret > length {
+		return 0
+	}
+
+	return ret
+}
+
+func minSubArrayLenRepeat3(target int, nums []int) int {
+	length := len(nums)
+	if length == 0 {
+		return 0
+	}
+
+	ret := length + 1
+
+	left, right, sum := 0, 0, 0
+	for right < length {
+		sum += nums[right]
+		right++
+
+		for sum >= target {
+			ret = getMin(ret, right-left)
+			sum -= nums[left]
+			left++
+		}
+	}
+
+	if ret > length {
+		return 0
+	}
+
+	return ret
+}
+
+func minSubArrayLenRepeat4(target int, nums []int) int {
+	l := len(nums)
+	if len(nums) == 0 {
+		return 0
+	}
+
+	var left, sum int
+	ret := l + 1
+	for right := 0; right < l; right++ {
+		sum += nums[right]
+		for sum >= target {
+			subL := right - left + 1
+			if subL < ret {
+				ret = subL
+			}
+			sum -= nums[left]
+			left++
+		}
+	}
+
+	if ret > l {
+		return 0
+	}
+
+	return ret
+}
