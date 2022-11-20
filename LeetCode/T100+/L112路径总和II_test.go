@@ -42,6 +42,6 @@ func Test_pathSum(t *testing.T) {
 		},
 	}
 
-	sum2 := pathSum2(tree, 22)
+	sum2 := pathSum(tree, 22)
 	t.Log(sum2)
 }
