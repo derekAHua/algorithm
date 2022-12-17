@@ -4,6 +4,8 @@ import "math"
 
 // https://leetcode.cn/problems/binary-tree-cameras/
 
+// 题解 https://leetcode.cn/problems/binary-tree-cameras/solutions/422860/jian-kong-er-cha-shu-by-leetcode-solution/
+
 type TreeNode struct {
 	Val   int
 	Left  *TreeNode

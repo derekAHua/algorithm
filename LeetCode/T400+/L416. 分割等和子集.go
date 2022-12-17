@@ -1,0 +1,31 @@
+package T400_
+
+import "sort"
+
+// https://leetcode.cn/problems/partition-equal-subset-sum/
+
+func canPartition(nums []int) (ret bool) {
+	sort.Ints(nums)
+
+	sum := 0
+	for i := 0; i < len(nums); i++ {
+		sum += nums[i]
+	}
+
+	we := sum % 2
+	if we == 1 {
+		return false
+	}
+
+	tar := sum / 2
+	dp := make([]int, tar+1)
+	for _, v := range nums {
+		for i := tar; i >= v; i-- {
+			if dp[i] < dp[i-v]+v {
+				dp[i] = dp[i-v] + v
+			}
+		}
+	}
+
+	return dp[tar] == tar
+}
