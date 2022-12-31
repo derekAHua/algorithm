@@ -1,0 +1,44 @@
+package T500_
+
+// https://leetcode.cn/problems/next-greater-element-ii/
+
+func nextGreaterElements(nums []int) (ret []int) {
+	length := len(nums)
+	ret = make([]int, length)
+	for i := range ret {
+		ret[i] = -1
+	}
+
+	nums = append(nums, nums...)
+	var stack []int
+	for i := 0; i < length*2; i++ {
+		v := nums[i%length]
+		for len(stack) > 0 && v > nums[stack[len(stack)-1]] {
+			ret[stack[len(stack)-1]] = v
+			stack = stack[:len(stack)-1]
+		}
+		stack = append(stack, i%length)
+	}
+
+	return
+}
+
+func nextGreaterElements_1(nums []int) (ret []int) {
+	length := len(nums)
+	ret = make([]int, length)
+	for i := range ret {
+		ret[i] = -1
+	}
+
+	nums = append(nums, nums...)
+	var stack []int
+	for i, v := range nums {
+		for len(stack) > 0 && v > nums[stack[len(stack)-1]] {
+			ret[stack[len(stack)-1]%length] = v
+			stack = stack[:len(stack)-1]
+		}
+		stack = append(stack, i)
+	}
+
+	return
+}
