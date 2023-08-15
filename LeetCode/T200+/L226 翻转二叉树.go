@@ -8,7 +8,22 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
-func invertTree(root *TreeNode) *TreeNode {
+func invertTree(root *TreeNode) (ret *TreeNode) {
+	var f func(root *TreeNode)
+	f = func(root *TreeNode) {
+		if root == nil {
+			return
+		}
+
+		f(root.Left)
+		f(root.Right)
+		root.Left, root.Right = root.Right, root.Left
+	}
+	f(root)
+	return root
+}
+
+func invertTreeR1(root *TreeNode) *TreeNode {
 
 	if root == nil {
 		return nil

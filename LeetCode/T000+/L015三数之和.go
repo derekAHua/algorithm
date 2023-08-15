@@ -14,14 +14,48 @@ import "sort"
 //
 //满足要求的三元组集合为： [ [-1, 0, 1], [-1, -1, 2] ]
 
-func threeSum(nums []int) [][]int {
+func threeSum(nums []int) (ret [][]int) {
+	sort.Ints(nums)
+
+	for idx, v := range nums {
+
+		if idx > 0 && v == nums[idx-1] {
+			continue
+		}
+
+		l, r := idx+1, len(nums)-1
+		for l < r {
+
+			lV := nums[l]
+			rV := nums[r]
+			if lV+rV > -v {
+				r--
+				continue
+			}
+			if lV+rV < -v {
+				l++
+				continue
+			}
+
+			ret = append(ret, []int{v, lV, rV})
+			for l < r && nums[l] == lV {
+				l++
+			}
+			for l < r && nums[r] == rV {
+				r--
+			}
+		}
+	}
+
+	return
+}
+
+func threeSumR1(nums []int) (ret [][]int) {
 	length := len(nums)
 	if length < 3 {
 		return nil
 	}
 	sort.Ints(nums)
-
-	ret := make([][]int, 0)
 
 	for i := 0; i < length-2; i++ {
 		iValue := nums[i]
@@ -56,5 +90,5 @@ func threeSum(nums []int) [][]int {
 		}
 	}
 
-	return ret
+	return
 }

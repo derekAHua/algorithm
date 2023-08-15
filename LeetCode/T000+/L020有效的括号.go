@@ -26,7 +26,40 @@ package T000_
 //输入: "([)]"
 //输出: false
 
-func isValid(s string) bool {
+func isValid(s string) (ret bool) {
+	if len(s)&2 == 1 {
+		return
+	}
+	var stack []int32
+	for _, v := range s {
+		switch v {
+		case '(', '[', '{':
+			stack = append(stack, v)
+		case ')':
+			if len(stack) > 0 && stack[len(stack)-1] == '(' {
+				stack = stack[:len(stack)-1]
+				continue
+			}
+			return false
+		case '}':
+			if len(stack) > 0 && stack[len(stack)-1] == '{' {
+				stack = stack[:len(stack)-1]
+				continue
+			}
+			return false
+		case ']':
+			if len(stack) > 0 && stack[len(stack)-1] == '[' {
+				stack = stack[:len(stack)-1]
+				continue
+			}
+			return false
+		}
+	}
+
+	return len(stack) == 0
+}
+
+func isValidR1(s string) bool {
 	if len(s)%2 == 1 {
 		return false
 	}

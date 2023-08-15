@@ -11,6 +11,29 @@ type TreeNode struct {
 }
 
 func levelOrder(root *TreeNode) (ret [][]int) {
+	var stack []*TreeNode
+	stack = append(stack, root)
+
+	for len(stack) != 0 {
+		var arr []*TreeNode
+		r := make([]int, 0, len(stack))
+		for i := 0; i < len(stack); i++ {
+			if stack[i] == nil {
+				continue
+			}
+			r = append(r, stack[i].Val)
+			arr = append(arr, stack[i].Left, stack[i].Right)
+		}
+		if len(r) > 0 {
+			ret = append(ret, r)
+		}
+		stack = arr
+	}
+
+	return
+}
+
+func levelOrder1(root *TreeNode) (ret [][]int) {
 	var order func(root *TreeNode, depth int)
 
 	order = func(root *TreeNode, depth int) {

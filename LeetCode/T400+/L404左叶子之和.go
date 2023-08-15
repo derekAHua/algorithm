@@ -13,6 +13,25 @@ type TreeNode struct {
 }
 
 func sumOfLeftLeaves(root *TreeNode) (ret int) {
+	var f func(*TreeNode, bool)
+	f = func(node *TreeNode, b bool) {
+		if node == nil {
+			return
+		}
+
+		if node.Left == nil && node.Right == nil && b {
+			ret += node.Val
+		}
+
+		f(node.Left, true)
+		f(node.Right, false)
+	}
+
+	f(root, false)
+	return
+}
+
+func sumOfLeftLeavesR1(root *TreeNode) (ret int) {
 	if root == nil {
 		return
 	}

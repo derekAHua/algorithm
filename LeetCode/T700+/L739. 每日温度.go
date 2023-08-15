@@ -3,6 +3,25 @@ package T700_
 // https://leetcode.cn/problems/daily-temperatures/
 
 func dailyTemperatures(temperatures []int) (ret []int) {
+
+	var stack []int
+	ret = make([]int, len(temperatures))
+
+	for idx, v := range temperatures {
+		for len(stack) > 0 && v > temperatures[stack[len(stack)-1]] {
+			pop := stack[len(stack)-1]
+			stack = stack[:len(stack)-1]
+
+			ret[pop] = idx - pop
+		}
+
+		stack = append(stack, idx)
+	}
+
+	return
+}
+
+func dailyTemperaturesR1(temperatures []int) (ret []int) {
 	stack := []int{0}
 	ret = make([]int, len(temperatures))
 

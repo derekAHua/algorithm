@@ -9,6 +9,30 @@ import "container/list"
 //假设二叉树中至少有一个节点。
 
 func findBottomLeftValue(root *TreeNode) (ret int) {
+	maxDeep := 0
+	var f func(node *TreeNode, deep int)
+	f = func(node *TreeNode, deep int) {
+		if node == nil {
+			return
+		}
+
+		if node.Left == nil && node.Right == nil && deep > maxDeep {
+			maxDeep = deep
+			ret = node.Val
+		}
+
+		if node.Left != nil {
+			f(node.Left, deep+1)
+		}
+		if node.Right != nil {
+			f(node.Right, deep+1)
+		}
+	}
+	f(root, 1)
+	return
+}
+
+func findBottomLeftValueV1(root *TreeNode) (ret int) {
 	if root.Left == nil && root.Right == nil {
 		return root.Val
 	}
