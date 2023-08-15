@@ -6,7 +6,23 @@ package T200_
 //
 //示例: 输入: 1->2->3->4->5->NULL 输出: 5->4->3->2->1->NULL
 
-func reverseList(head *ListNode) *ListNode {
+func reverseList(head *ListNode) (ret *ListNode) {
+	ret = new(ListNode)
+
+	cur := head
+
+	for cur != nil {
+		node := cur
+		cur = cur.Next
+
+		node.Next = ret.Next
+		ret.Next = node
+	}
+
+	return ret.Next
+}
+
+func reverseListR1(head *ListNode) *ListNode {
 	t := new(ListNode)
 
 	var cur *ListNode

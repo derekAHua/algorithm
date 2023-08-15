@@ -24,6 +24,21 @@ type ListNode struct {
 }
 
 func removeElements(head *ListNode, val int) (ret *ListNode) {
+	cur := new(ListNode)
+	cur.Next = head
+	ret = cur
+	for cur.Next != nil {
+		if cur.Next.Val == val {
+			cur.Next = cur.Next.Next
+			continue
+		}
+		cur = cur.Next
+	}
+
+	return ret.Next
+}
+
+func removeElementsR1(head *ListNode, val int) (ret *ListNode) {
 	top := &ListNode{Next: head}
 
 	cur := top

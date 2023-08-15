@@ -3,6 +3,43 @@ package T700_
 // https://leetcode-cn.com/problems/binary-search/
 
 func search(nums []int, target int) (ret int) {
+	var l, r int
+	r = len(nums)
+	for l != r {
+		mid := l + (-l+r)/2
+		switch {
+		case nums[mid] == target:
+			return mid
+		case nums[mid] < target:
+			l = mid + 1
+		default:
+			r = mid
+		}
+	}
+
+	return -1
+}
+
+func searchRepeat4(nums []int, target int) (ret int) {
+
+	l := 0
+	r := len(nums)
+	for l < r {
+		cur := (l + r) >> 1
+		if nums[cur] == target {
+			return cur
+		}
+		if nums[cur] > target {
+			r = cur
+			continue
+		}
+		l = cur + 1
+	}
+
+	return -1
+}
+
+func searchRepeat3(nums []int, target int) (ret int) {
 	left, right := 0, len(nums)
 
 	for left < right {

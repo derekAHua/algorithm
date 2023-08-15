@@ -1,6 +1,8 @@
 package LeetCode
 
 import (
+	"algorithm/internal"
+	"fmt"
 	"testing"
 )
 
@@ -28,4 +30,25 @@ func Test_Traversal(t *testing.T) {
 	t.Log(preorderTraversal(tree))
 	t.Log(inTraversal(tree))
 	t.Log(postTraversal(tree))
+}
+
+type D struct {
+}
+
+func (d *D) Do() {
+	fmt.Println("dog...")
+}
+
+type bu struct {
+}
+
+func (b *bu) Build() internal.Dog {
+	return &D{}
+}
+
+func TestBuilder(t *testing.T) {
+	internal.Set(&bu{})
+	builder := internal.Get()
+	dog := builder.Build()
+	dog.Do()
 }

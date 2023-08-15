@@ -3,6 +3,92 @@ package T000_
 // https://leetcode-cn.com/problems/spiral-matrix-ii/
 
 func generateMatrix(n int) (ret [][]int) {
+	if n == 0 {
+		return
+	}
+
+	ret = make([][]int, n)
+	for i := 0; i < n; i++ {
+		ret[i] = make([]int, n)
+	}
+
+	val := 1
+
+	l, r, t, b := 0, n-1, 0, n-1
+	for l < r {
+		for i := l; i < r; i++ {
+			ret[t][i] = val
+			val++
+		}
+		for i := t; i < b; i++ {
+			ret[i][r] = val
+			val++
+		}
+		for i := r; i > l; i-- {
+			ret[b][i] = val
+			val++
+		}
+		for i := b; i > t; i-- {
+			ret[i][l] = val
+			val++
+		}
+		l++
+		r--
+		t++
+		b--
+	}
+
+	if l == r {
+		ret[l][r] = val
+	}
+
+	return
+}
+
+func generateMatrixRepeat5(n int) (ret [][]int) {
+	if n == 1 {
+		return [][]int{{1}}
+	}
+
+	ret = make([][]int, n)
+	for i := range ret {
+		ret[i] = make([]int, n)
+	}
+
+	l, r, t, b := 0, n-1, 0, n-1
+	cur := 1
+	m := n * n
+	for cur < m {
+		for j := l; j < r; j++ {
+			ret[t][j] = cur
+			cur++
+		}
+		for i := t; i < b; i++ {
+			ret[i][r] = cur
+			cur++
+		}
+		for j := r; j > l; j-- {
+			ret[b][j] = cur
+			cur++
+		}
+		for i := b; i > t; i-- {
+			ret[i][l] = cur
+			cur++
+		}
+		l++
+		r--
+		t++
+		b--
+	}
+
+	if n&1 == 1 {
+		ret[n/2][n/2] = n * n
+	}
+
+	return
+}
+
+func generateMatrixRepeat4(n int) (ret [][]int) {
 
 	ret = make([][]int, n)
 	for index := range ret {

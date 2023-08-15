@@ -6,7 +6,24 @@ package T000_
 //
 //你不能只是单纯的改变节点内部的值，而是需要实际的进行节点交换。
 
-func swapPairs(head *ListNode) *ListNode {
+func swapPairs(head *ListNode) (ret *ListNode) {
+	ret = new(ListNode)
+	ret.Next = head
+
+	cur := head
+
+	for cur != nil && cur.Next != nil {
+		cur.Next.Val, cur.Val = cur.Val, cur.Next.Val
+		cur = cur.Next
+		if cur != nil {
+			cur = cur.Next
+		}
+	}
+
+	return ret.Next
+}
+
+func swapPairsR1(head *ListNode) *ListNode {
 	if head == nil {
 		return head
 	}

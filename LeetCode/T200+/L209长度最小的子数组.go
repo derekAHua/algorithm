@@ -1,8 +1,89 @@
 package T200_
 
+import (
+	"container/list"
+	"math"
+)
+
 // https://leetcode-cn.com/problems/minimum-size-subarray-sum/
 
 func minSubArrayLen(target int, nums []int) (ret int) {
+	if target == 0 || len(nums) == 0 {
+		return
+	}
+	ret = math.MaxInt
+
+	l := 0
+	sum := 0
+	for r, v := range nums {
+		sum += v
+		for sum >= target {
+			ret = min(ret, r-l+1)
+			sum -= nums[l]
+			l++
+		}
+	}
+
+	if ret == math.MaxInt {
+		ret = 0
+	}
+	return
+}
+
+func minSubArrayLenRepeat7(target int, nums []int) (ret int) {
+	if len(nums) == 0 {
+		return
+	}
+
+	ret = len(nums) + 1
+
+	l := list.New()
+	sum := 0
+	for _, v := range nums {
+		l.PushBack(v)
+		sum += v
+
+		for sum >= target {
+			ret = min(ret, l.Len())
+			front := l.Front()
+			sum -= l.Remove(front).(int)
+		}
+	}
+
+	if ret == len(nums)+1 {
+		ret = 0
+	}
+
+	return
+}
+
+func minSubArrayLenRepeat6(target int, nums []int) (ret int) {
+	if len(nums) == 0 {
+		return
+	}
+
+	m := len(nums) + 1
+	ret = m
+
+	l := 0
+	sum := 0
+	for r, v := range nums {
+		sum += v
+		for sum >= target {
+			ret = getMin(ret, r-l+1)
+			sum -= nums[l]
+			l++
+		}
+	}
+
+	if ret == m {
+		ret = 0
+	}
+
+	return
+}
+
+func minSubArrayLenRepeat5(target int, nums []int) (ret int) {
 	l := len(nums)
 	if l == 0 {
 		return 0

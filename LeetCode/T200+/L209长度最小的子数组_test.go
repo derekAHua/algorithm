@@ -14,6 +14,7 @@ func Test_minSubArrayLen(t *testing.T) {
 	}{
 		{"t1", args{target: 7, nums: []int{2, 3, 1, 2, 4, 3}}, 2},
 		{"t2", args{target: 4, nums: []int{1, 4, 4}}, 1},
+		{"t3", args{target: 11, nums: []int{1, 2, 3, 4, 5}}, 3},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
