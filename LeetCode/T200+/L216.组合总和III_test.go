@@ -14,9 +14,9 @@ func Test_combinationSum3(t *testing.T) {
 	for _, v := range ret {
 		t.Log(v)
 	}
-
-	ret = combinationSum3(9, 45)
-	for _, v := range ret {
-		t.Log(v)
-	}
+	//
+	//ret = combinationSum3(9, 45)
+	//for _, v := range ret {
+	//	t.Log(v)
+	//}
 }

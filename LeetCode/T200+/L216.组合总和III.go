@@ -13,6 +13,31 @@ package T200_
 //示例 2: 输入: k = 3, n = 9 输出: [[1,2,6], [1,3,5], [2,3,4]]
 
 func combinationSum3(k int, n int) (ret [][]int) {
+	var arr []int
+	var f func(idx, sum int)
+	f = func(idx, sum int) {
+		if sum > n {
+			return
+		}
+		if len(arr) == k {
+			if sum == n {
+				ret = append(ret, append([]int{}, arr...))
+			}
+			return
+		}
+
+		for i := idx; i <= 9; i++ {
+			arr = append(arr, i)
+			f(i+1, sum+i)
+			arr = arr[:len(arr)-1]
+		}
+
+	}
+	f(1, 0)
+	return
+}
+
+func combinationSum3R1(k int, n int) (ret [][]int) {
 	if n < 0 || k < 0 {
 		return
 	}
