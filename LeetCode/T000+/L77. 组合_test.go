@@ -15,8 +15,8 @@ func Test_combine(t *testing.T) {
 		t.Log(v)
 	}
 
-	ret = combine(1, 1)
-	for _, v := range ret {
-		t.Log(v)
-	}
+	//ret = combine(1, 1)
+	//for _, v := range ret {
+	//	t.Log(v)
+	//}
 }

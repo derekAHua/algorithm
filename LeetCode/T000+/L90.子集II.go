@@ -15,6 +15,30 @@ import "sort"
 
 func subsetsWithDup(nums []int) (ret [][]int) {
 	sort.Ints(nums)
+	var arr []int
+	var f func(idx int, choosePre bool)
+	f = func(idx int, choosePre bool) {
+		if idx == len(nums) {
+			ret = append(ret, append([]int{}, arr...))
+			return
+		}
+
+		f(idx+1, false)
+
+		if !choosePre && idx > 0 && nums[idx] == nums[idx-1] {
+			return
+		}
+		arr = append(arr, nums[idx])
+		f(idx+1, true)
+		arr = arr[:len(arr)-1]
+	}
+
+	f(0, false)
+	return
+}
+
+func subsetsWithDupR1(nums []int) (ret [][]int) {
+	sort.Ints(nums)
 
 	var f func(int, []int)
 

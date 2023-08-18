@@ -1,5 +1,7 @@
 package T000_
 
+import "strconv"
+
 // https://leetcode.cn/problems/letter-combinations-of-a-phone-number/
 
 //给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。
@@ -11,6 +13,45 @@ package T000_
 //说明：尽管上面的答案是按字典序排列的，但是你可以任意选择答案输出的顺序。
 
 func letterCombinations(digits string) (ret []string) {
+	if len(digits) == 0 {
+		return
+	}
+	m := [10]string{
+		"",     // 0
+		"",     // 1
+		"abc",  // 2
+		"def",  // 3
+		"ghi",  // 4
+		"jkl",  // 5
+		"mno",  // 6
+		"pqrs", // 7
+		"tuv",  // 8
+		"wxyz", // 9
+	}
+
+	var arr []byte
+	var f func(idx int)
+	f = func(idx int) {
+		if idx == len(digits) {
+			ret = append(ret, string(arr))
+			return
+		}
+
+		u := digits[idx]
+		atoi, _ := strconv.Atoi(string(u))
+		value := m[atoi]
+		for _, v := range value {
+			arr = append(arr, byte(v))
+			f(idx + 1)
+			arr = arr[:len(arr)-1]
+		}
+	}
+
+	f(0)
+	return
+}
+
+func letterCombinationsR1(digits string) (ret []string) {
 	length := len(digits)
 	if length == 0 {
 		return

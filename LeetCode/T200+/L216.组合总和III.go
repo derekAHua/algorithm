@@ -14,6 +14,35 @@ package T200_
 
 func combinationSum3(k int, n int) (ret [][]int) {
 	var arr []int
+	var f func(idx int)
+
+	sum := 0
+	f = func(idx int) {
+		if sum > n || len(arr) > k {
+			return
+		}
+		if sum == n && len(arr) == k {
+			ret = append(ret, append([]int{}, arr...))
+			return
+		}
+		if idx == 10 {
+			return
+		}
+
+		f(idx + 1)
+		sum += idx
+		arr = append(arr, idx)
+		f(idx + 1)
+		arr = arr[:len(arr)-1]
+		sum -= idx
+	}
+
+	f(1)
+	return
+}
+
+func combinationSumR2(k int, n int) (ret [][]int) {
+	var arr []int
 	var f func(idx, sum int)
 	f = func(idx, sum int) {
 		if sum > n {

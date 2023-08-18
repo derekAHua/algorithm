@@ -9,6 +9,30 @@ package T100_
 //示例: 输入: "aab" 输出: [ ["aa","b"], ["a","a","b"] ]
 
 func partition(s string) (ret [][]string) {
+	var arr []string
+	var f func(idx int)
+	f = func(idx int) {
+		if idx == len(s) {
+			ret = append(ret, append([]string{}, arr...))
+			return
+		}
+
+		for i := idx + 1; i <= len(s); i++ {
+			vs := s[idx:i]
+			if !is(vs) {
+				continue
+			}
+			arr = append(arr, vs)
+			f(i)
+			arr = arr[:len(arr)-1]
+		}
+	}
+
+	f(0)
+	return
+}
+
+func partitionR1(s string) (ret [][]string) {
 	var f func(string, []string)
 
 	f = func(s string, cur []string) {
