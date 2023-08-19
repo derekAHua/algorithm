@@ -1,8 +1,19 @@
 package T300_
 
 // https://leetcode.cn/problems/integer-break/
-
 func integerBreak(n int) (ret int) {
+	dp := make([]int, n+1)
+	for i := 3; i < len(dp); i++ {
+		for j := 1; j <= i; j++ {
+			dp[i] = max(dp[i], max(j*(i-j), j*dp[i-j]))
+		}
+
+	}
+
+	return dp[len(dp)-1]
+}
+
+func integerBreakR2(n int) (ret int) {
 	dp := make([]int, n+1)
 	for i := 2; i < len(dp); i++ {
 		for j := 1; j < i; j++ {

@@ -16,7 +16,8 @@ func Test_numSquares(t *testing.T) {
 		args args
 		want int
 	}{
-		{"", args{12}, 3},
+		{"t1", args{12}, 3},
+		{"t2", args{1}, 1},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

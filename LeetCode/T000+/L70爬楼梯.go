@@ -2,7 +2,22 @@ package T000_
 
 // https://leetcode.cn/problems/climbing-stairs/
 
-func climbStairs(n int) (ret int) {
+func climbStairs(n int) int {
+	dp := make([]int, n+1)
+	dp[0] = 1
+	nums := []int{1, 2}
+	for i := 1; i < len(dp); i++ {
+		for _, v := range nums {
+			if i < v {
+				continue
+			}
+			dp[i] += dp[i-v]
+		}
+	}
+	return dp[n]
+}
+
+func climbStairsR2(n int) (ret int) {
 	if n < 3 {
 		return n
 	}
