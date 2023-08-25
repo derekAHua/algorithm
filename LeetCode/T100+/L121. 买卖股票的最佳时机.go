@@ -2,7 +2,22 @@ package T100_
 
 // https://leetcode.cn/problems/best-time-to-buy-and-sell-stock/
 
-func maxProfit_(prices []int) (ret int) {
+func maxProfit_(prices []int) int {
+	if len(prices) == 0 {
+		return 0
+	}
+
+	dp := make([][2]int, len(prices))
+	dp[0][0] = -prices[0]
+	for i := 1; i < len(prices); i++ {
+		dp[i][0] = max(dp[i-1][0], -prices[i])
+		dp[i][1] = max(dp[i-1][1], dp[i-1][0]+prices[i])
+	}
+
+	return dp[len(dp)-1][1]
+}
+
+func maxProfit_R1(prices []int) (ret int) {
 	if len(prices) <= 1 {
 		return 0
 	}
@@ -15,7 +30,7 @@ func maxProfit_(prices []int) (ret int) {
 	return
 }
 
-func maxProfit_2(prices []int) int {
+func maxProfit_R2(prices []int) int {
 	length := len(prices)
 	if length == 0 {
 		return 0
