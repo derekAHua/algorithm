@@ -10,6 +10,31 @@ package T000_
 //输出: [ [1,2,3], [1,3,2], [2,1,3], [2,3,1], [3,1,2], [3,2,1] ]
 
 func permute(nums []int) (ret [][]int) {
+	m := map[int]bool{}
+	var f func()
+	var arr []int
+	f = func() {
+		if len(arr) == len(nums) {
+			ret = append(ret, append([]int{}, arr...))
+		}
+
+		for i := 0; i < len(nums); i++ {
+			if m[i] {
+				continue
+			}
+			arr = append(arr, nums[i])
+			m[i] = true
+			f()
+			m[i] = false
+			arr = arr[:len(arr)-1]
+		}
+	}
+
+	f()
+	return
+}
+
+func permuteR1(nums []int) (ret [][]int) {
 	var f func(map[int]bool, []int)
 	f = func(m map[int]bool, arr []int) {
 		if len(arr) == len(nums) {
