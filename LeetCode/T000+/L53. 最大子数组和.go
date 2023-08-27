@@ -15,7 +15,20 @@ func maxSubArray(nums []int) (ret int) {
 	return
 }
 
-func maxSubArray2(nums []int) (ret int) {
+func maxSubArrayR2(nums []int) (ret int) {
+	ret = nums[0]
+	for i := 1; i < len(nums); i++ {
+		if nums[i]+nums[i-1] > nums[i] {
+			nums[i] += nums[i-1]
+		}
+		if nums[i] > ret {
+			ret = nums[i]
+		}
+	}
+	return
+}
+
+func maxSubArrayR1(nums []int) (ret int) {
 	dp := make([]int, len(nums))
 	dp[0] = nums[0]
 	ret = nums[0]
