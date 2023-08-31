@@ -3,6 +3,29 @@ package T400_
 // https://leetcode.cn/problems/next-greater-element-i/
 
 func nextGreaterElement(nums1 []int, nums2 []int) (ret []int) {
+	ret = make([]int, len(nums1))
+	for i := range ret {
+		ret[i] = -1
+	}
+
+	m := map[int]int{}
+	for i, v := range nums2 {
+		m[v] = i
+	}
+
+	for i, v := range nums1 {
+		for j := m[v]; j < len(nums2); j++ {
+			if nums2[j] > nums1[i] {
+				ret[i] = nums2[j]
+				break
+			}
+		}
+	}
+
+	return
+}
+
+func nextGreaterElementR2(nums1 []int, nums2 []int) (ret []int) {
 	ret = make([]int, 0, len(nums1))
 
 	for _, v := range nums1 {

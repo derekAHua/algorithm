@@ -3,6 +3,27 @@ package T500_
 // https://leetcode.cn/problems/next-greater-element-ii/
 
 func nextGreaterElements(nums []int) (ret []int) {
+	ret = make([]int, len(nums))
+	for i := range ret {
+		ret[i] = -1
+	}
+
+	var stack []int
+	nums = append(nums, nums...)
+	for i, v := range nums {
+		for len(stack) > 0 && v > nums[stack[len(stack)-1]%len(ret)] {
+			pop := stack[len(stack)-1]
+			stack = stack[:len(stack)-1]
+			ret[pop%len(ret)] = v
+		}
+
+		stack = append(stack, i)
+	}
+
+	return
+}
+
+func nextGreaterElementsR3(nums []int) (ret []int) {
 
 	var stack []int
 	ret = make([]int, len(nums))
