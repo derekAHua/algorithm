@@ -58,10 +58,3 @@ func lastStoneWeightIIR1(stones []int) int {
 
 	return sum - 2*dp[target]
 }
-
-func max(x, y int) int {
-	if x > y {
-		return x
-	}
-	return y
-}

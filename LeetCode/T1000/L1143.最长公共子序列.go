@@ -1,4 +1,4 @@
-package T1100
+package T1000
 
 // https://leetcode.cn/problems/longest-common-subsequence/
 
