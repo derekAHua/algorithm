@@ -18,6 +18,36 @@ package T000_
 //-10 <= nums[i] <= 10
 
 func permuteUnique(nums []int) (ret [][]int) {
+	var (
+		f   func()
+		arr []int
+	)
+
+	m := map[int]bool{}
+	f = func() {
+		if len(arr) == len(nums) {
+			ret = append(ret, append([]int{}, arr...))
+		}
+
+		used := [21]bool{}
+		for i := 0; i < len(nums); i++ {
+			if m[i] || used[nums[i]+10] {
+				continue
+			}
+			used[nums[i]+10] = true
+			arr = append(arr, nums[i])
+			m[i] = true
+			f()
+			arr = arr[:len(arr)-1]
+			m[i] = false
+		}
+	}
+
+	f()
+	return
+}
+
+func permuteUniqueR1(nums []int) (ret [][]int) {
 	var f func(map[int]bool, []int)
 
 	f = func(m map[int]bool, arr []int) {

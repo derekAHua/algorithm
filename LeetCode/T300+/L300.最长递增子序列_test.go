@@ -18,6 +18,7 @@ func Test_lengthOfLIS(t *testing.T) {
 	}{
 		// TODO: Add test cases.
 		{"t1", args{[]int{10, 9, 2, 5, 3, 7, 101, 18}}, 4},
+		{"t2", args{[]int{4, 10, 4, 3, 8, 9}}, 3},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

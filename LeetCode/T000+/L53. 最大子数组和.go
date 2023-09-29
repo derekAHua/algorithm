@@ -15,6 +15,19 @@ func maxSubArray(nums []int) (ret int) {
 	return
 }
 
+func maxSubArrayR3(nums []int) (ret int) {
+	ret = nums[0]
+	for i := 1; i < len(nums); i++ {
+		if nums[i]+nums[i-1] > nums[i] {
+			nums[i] += nums[i-1]
+		}
+		if nums[i] > ret {
+			ret = nums[i]
+		}
+	}
+	return
+}
+
 func maxSubArrayR2(nums []int) (ret int) {
 	ret = nums[0]
 	for i := 1; i < len(nums); i++ {

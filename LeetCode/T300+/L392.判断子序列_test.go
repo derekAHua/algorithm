@@ -8,5 +8,6 @@ import "testing"
 // @Version 1.0
 
 func Test_isSubsequence(t *testing.T) {
-	isSubsequence("abc", "ahbgdc")
+	//t.Log(isSubsequence("abc", "ahbgdc"))
+	t.Log(isSubsequence("", "ahbgdc"))
 }
