@@ -29,6 +29,36 @@ func permuteUnique(nums []int) (ret [][]int) {
 			ret = append(ret, append([]int{}, arr...))
 		}
 
+		used := map[int]bool{}
+		for i := 0; i < len(nums); i++ {
+			if m[i] || used[nums[i]] {
+				continue
+			}
+			used[nums[i]] = true
+			arr = append(arr, nums[i])
+			m[i] = true
+			f()
+			arr = arr[:len(arr)-1]
+			m[i] = false
+		}
+	}
+
+	f()
+	return
+}
+
+func permuteUniqueR2(nums []int) (ret [][]int) {
+	var (
+		f   func()
+		arr []int
+	)
+
+	m := map[int]bool{}
+	f = func() {
+		if len(arr) == len(nums) {
+			ret = append(ret, append([]int{}, arr...))
+		}
+
 		used := [21]bool{}
 		for i := 0; i < len(nums); i++ {
 			if m[i] || used[nums[i]+10] {

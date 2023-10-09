@@ -14,6 +14,36 @@ import "sort"
 //输出: [ [2], [1], [1,2,2], [2,2], [1,2], [] ]
 
 func subsetsWithDup(nums []int) (ret [][]int) {
+	m := make(map[int]int)
+	for _, v := range nums {
+		m[v]++
+	}
+	i := 0
+	for k := range m {
+		nums[i] = k
+		i++
+	}
+	nums = nums[:i]
+
+	var f func(idx int)
+	var arr []int
+	f = func(idx int) {
+		ret = append(ret, append([]int{}, arr...))
+
+		for i := idx; i < len(nums); i++ {
+			times := m[nums[i]]
+			for j := 0; j < times; j++ {
+				arr = append(arr, nums[i])
+				f(i + 1)
+			}
+			arr = arr[:len(arr)-times]
+		}
+	}
+	f(0)
+	return
+}
+
+func subsetsWithDupR3(nums []int) (ret [][]int) {
 
 	sort.Ints(nums)
 	m := make(map[int]int)

@@ -9,6 +9,22 @@ package T000_
 //示例: 输入: nums = [1,2,3] 输出: [ [3],   [1],   [2],   [1,2,3],   [1,3],   [2,3],   [1,2],   [] ]
 
 func subsets(nums []int) (ret [][]int) {
+	var f func(idx int)
+	var arr []int
+	f = func(idx int) {
+		ret = append(ret, append([]int{}, arr...))
+
+		for i := idx; i < len(nums); i++ {
+			arr = append(arr, nums[i])
+			f(i + 1)
+			arr = arr[:len(arr)-1]
+		}
+	}
+	f(0)
+	return
+}
+
+func subsetsR3(nums []int) (ret [][]int) {
 
 	var f func(idx int)
 	var arr []int

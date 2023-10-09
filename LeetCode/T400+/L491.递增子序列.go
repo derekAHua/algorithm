@@ -13,7 +13,37 @@ package T400_
 // 给定数组的长度不会超过15。
 // 数组中的整数范围是 [-100,100]。
 // 给定数组中可能包含重复数字，相等的数字应该被视为递增的一种情况。
+
 func findSubsequences(nums []int) (ret [][]int) {
+	var (
+		arr []int
+		f   func(idx int)
+	)
+	f = func(idx int) {
+		if len(arr) > 1 {
+			ret = append(ret, append([]int{}, arr...))
+		}
+
+		history := map[int]bool{}
+		for i := idx; i < len(nums); i++ {
+			if (len(arr) > 0 && nums[i] < arr[len(arr)-1]) || history[nums[i]] {
+				continue
+			}
+
+			history[nums[i]] = true
+
+			arr = append(arr, nums[i])
+			f(i + 1)
+			arr = arr[:len(arr)-1]
+
+		}
+	}
+
+	f(0)
+	return
+}
+
+func findSubsequencesR2(nums []int) (ret [][]int) {
 	var f func(idx int)
 	var arr []int
 

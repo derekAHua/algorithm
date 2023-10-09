@@ -14,4 +14,10 @@ func Test_findSubsequences(t *testing.T) {
 	for _, v := range subsequences {
 		t.Log(v)
 	}
+
+	t.Log("---------")
+	subsequences = findSubsequences([]int{4, 6, 7, 7})
+	for _, v := range subsequences {
+		t.Log(v)
+	}
 }

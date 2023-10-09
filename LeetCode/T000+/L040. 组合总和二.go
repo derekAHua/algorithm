@@ -23,6 +23,47 @@ import "sort"
 //]
 
 func combinationSum2(candidates []int, target int) (ret [][]int) {
+	m := make(map[int]int)
+	for _, v := range candidates {
+		m[v]++
+	}
+	i := 0
+	for v := range m {
+		candidates[i] = v
+		i++
+	}
+	candidates = candidates[:i]
+
+	var (
+		sum int
+		arr []int
+		f   func(idx int)
+	)
+	f = func(idx int) {
+		if sum == target {
+			ret = append(ret, append([]int{}, arr...))
+			return
+		}
+		if sum > target || idx == len(candidates) {
+			return
+		}
+		for i := idx; i < len(candidates); i++ {
+			v := candidates[i]
+			times := m[v]
+			for j := 0; j < times; j++ {
+				arr = append(arr, v)
+				sum += v
+				f(i + 1)
+			}
+			arr = arr[:len(arr)-times]
+			sum -= v * times
+		}
+	}
+	f(0)
+	return
+}
+
+func combinationSum2R3(candidates []int, target int) (ret [][]int) {
 
 	sort.Ints(candidates)
 	m := make(map[int]int)

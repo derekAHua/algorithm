@@ -21,6 +21,38 @@ package T000_
 //#
 
 func combinationSum(candidates []int, target int) (ret [][]int) {
+	var (
+		arr []int
+		sum int
+		f   func(idx int)
+	)
+	f = func(idx int) {
+		if sum == target {
+			ret = append(ret, append([]int{}, arr...))
+			return
+		}
+		if sum > target || idx == len(candidates) {
+			return
+		}
+		for i := idx; i < len(candidates); i++ {
+			times := (target - sum) / candidates[i]
+			if times == 0 {
+				continue
+			}
+			for j := 0; j < times; j++ {
+				arr = append(arr, candidates[i])
+				sum += candidates[i]
+				f(i + 1)
+			}
+			arr = arr[:len(arr)-times]
+			sum -= times * candidates[i]
+		}
+	}
+	f(0)
+	return
+}
+
+func combinationSumR3(candidates []int, target int) (ret [][]int) {
 
 	var f func(idx int)
 	sum := 0

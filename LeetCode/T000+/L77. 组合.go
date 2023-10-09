@@ -18,6 +18,28 @@ package T000_
 //
 
 func combine(n int, k int) (ret [][]int) {
+	var arr []int
+	var f func(idx int)
+	f = func(idx int) {
+		if len(arr) == k {
+			ret = append(ret, append([]int{}, arr...))
+			return
+		}
+		if idx == n+1 {
+			return
+		}
+
+		for i := idx; i <= n; i++ {
+			arr = append(arr, i)
+			f(i + 1)
+			arr = arr[:len(arr)-1]
+		}
+	}
+	f(1)
+	return
+}
+
+func combineR5(n int, k int) (ret [][]int) {
 	var f func(idx int)
 
 	var arr []int
