@@ -16,7 +16,6 @@ func Test_minPathSum(t *testing.T) {
 		args    args
 		wantRet int
 	}{
-		// TODO: Add test cases.
 		{"t1", args{grid: [][]int{
 			{1, 3, 1}, {1, 5, 1}, {4, 2, 1},
 		}}, 7},

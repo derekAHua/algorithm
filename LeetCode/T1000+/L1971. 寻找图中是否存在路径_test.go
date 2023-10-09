@@ -1,4 +1,4 @@
-package T1000
+package T1000_
 
 import "testing"
 
@@ -19,7 +19,6 @@ func Test_validPath(t *testing.T) {
 		args args
 		want bool
 	}{
-		// TODO: Add test cases.
 		{"t1", args{
 			n:           10,
 			edges:       [][]int{{0, 7}, {0, 8}, {6, 1}, {2, 0}, {0, 4}, {5, 8}, {4, 7}, {1, 3}, {3, 5}, {6, 5}},

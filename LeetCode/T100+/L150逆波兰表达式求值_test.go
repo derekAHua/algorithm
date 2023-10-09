@@ -16,7 +16,6 @@ func Test_evalRPN(t *testing.T) {
 		args    args
 		wantRet int
 	}{
-		// TODO: Add test cases.
 		{"t1", args{tokens: []string{"4", "13", "5", "/", "+"}}, 6},
 	}
 	for _, tt := range tests {

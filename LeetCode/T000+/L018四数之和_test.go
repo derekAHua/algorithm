@@ -20,7 +20,6 @@ func Test_fourSum(t *testing.T) {
 		args args
 		want [][]int
 	}{
-		// TODO: Add test cases.
 		{"t1", args{[]int{2, 2, 2, 2, 2}, 8}, [][]int{{2, 2, 2, 2}}},
 	}
 	for _, tt := range tests {

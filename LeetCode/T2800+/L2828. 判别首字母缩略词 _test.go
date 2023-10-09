@@ -17,7 +17,6 @@ func Test_isAcronym(t *testing.T) {
 		args args
 		want bool
 	}{
-		// TODO: Add test cases.
 		{"t1", args{words: []string{"alice", "bob", "charlie"}, s: "abc"}, true},
 		{"t2", args{words: []string{"a", "b", "c"}, s: "abcd"}, false},
 	}

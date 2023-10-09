@@ -15,7 +15,6 @@ func Test_sortColors(t *testing.T) {
 		name string
 		args args
 	}{
-		// TODO: Add test cases.
 		{"t1", args{[]int{2, 0, 2, 1, 1, 0}}},
 	}
 	for _, tt := range tests {

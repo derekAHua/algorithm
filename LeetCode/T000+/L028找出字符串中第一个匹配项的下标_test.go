@@ -17,7 +17,6 @@ func Test_strStr(t *testing.T) {
 		args args
 		want int
 	}{
-		// TODO: Add test cases.
 		{"t1", args{"sadbutsad", "sad"}, 0},
 		{"t2", args{"a", "a"}, 0},
 		{"t2", args{"ababaabbbbababbaabaaabaabbaaaabbabaabbbbbbabbaabbabbbabbbbbaaabaababbbaabbbabbbaabbbbaaabbababbabbbabaaabbaabbabababbbaaaaaaababbabaababaabbbbaaabbbabb", "abbabbbabaa"}, 92},

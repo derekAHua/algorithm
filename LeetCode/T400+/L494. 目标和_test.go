@@ -17,7 +17,6 @@ func Test_findTargetSumWays(t *testing.T) {
 		args    args
 		wantRet int
 	}{
-		// TODO: Add test cases.
 		{"t1", args{[]int{1, 1, 1, 1, 1}, 3}, 5},
 	}
 	for _, tt := range tests {

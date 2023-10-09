@@ -1,4 +1,4 @@
-package T1000
+package T1000_
 
 // https://leetcode.cn/problems/uncrossed-lines/
 

@@ -16,7 +16,6 @@ func Test_numIslands(t *testing.T) {
 		args    args
 		wantRet int
 	}{
-		// TODO: Add test cases.
 		{"t1", args{
 			[][]byte{
 				{'1', '1', '1', '1', '0'},

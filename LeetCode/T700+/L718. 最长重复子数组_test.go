@@ -17,7 +17,6 @@ func Test_findLength(t *testing.T) {
 		args    args
 		wantRet int
 	}{
-		// TODO: Add test cases.
 		{"t1", args{[]int{1, 2, 3, 2, 1}, []int{3, 2, 1, 4, 7}}, 3},
 		{"t1", args{[]int{0, 0, 0, 0, 0}, []int{0, 0, 0, 0, 0}}, 5},
 		{"t1", args{[]int{0, 1, 1, 1, 1}, []int{1, 0, 1, 0, 1}}, 2},

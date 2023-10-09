@@ -17,7 +17,6 @@ func Test_maximizeTheProfit(t *testing.T) {
 		args args
 		want int
 	}{
-		// TODO: Add test cases.
 		{"t1", args{n: 5, offers: [][]int{{0, 0, 1}, {0, 2, 2}, {1, 3, 2}}}, 3},
 		{"t1", args{n: 5, offers: [][]int{{0, 0, 1}, {0, 2, 10}, {1, 3, 2}}}, 10},
 	}

@@ -16,7 +16,6 @@ func Test_minCostClimbingStairs(t *testing.T) {
 		args    args
 		wantRet int
 	}{
-		// TODO: Add test cases.
 		{"t1", args{[]int{10, 15, 20}}, 15},
 		{"t1", args{[]int{10, 15}}, 10},
 	}

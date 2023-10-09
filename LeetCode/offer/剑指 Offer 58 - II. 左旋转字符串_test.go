@@ -19,7 +19,6 @@ func Test_reverseLeftWords(t *testing.T) {
 		args args
 		want string
 	}{
-		// TODO: Add test cases.
 		{"t1", args{"abcdefg", 2}, "cdefgab"},
 	}
 	for _, tt := range tests {

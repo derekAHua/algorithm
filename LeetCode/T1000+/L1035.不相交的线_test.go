@@ -1,4 +1,4 @@
-package T1000
+package T1000_
 
 import "testing"
 
@@ -17,7 +17,6 @@ func Test_maxUncrossedLines(t *testing.T) {
 		args    args
 		wantRet int
 	}{
-		// TODO: Add test cases.
 		{"t1", args{[]int{1}, []int{1, 3}}, 1},
 	}
 	for _, tt := range tests {

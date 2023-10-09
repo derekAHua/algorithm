@@ -16,7 +16,6 @@ func Test_replaceSpace(t *testing.T) {
 		args args
 		want string
 	}{
-		// TODO: Add test cases.
 		{"t1", args{"We are happy."}, "We%20are%20happy."},
 	}
 	for _, tt := range tests {

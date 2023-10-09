@@ -16,7 +16,6 @@ func Test_findLengthOfLCIS(t *testing.T) {
 		args    args
 		wantRet int
 	}{
-		// TODO: Add test cases.
 		{"t1", args{nums: []int{1, 3, 5, 4, 7}}, 3},
 		{"t1", args{nums: []int{1, 3, 5, 7}}, 4},
 	}

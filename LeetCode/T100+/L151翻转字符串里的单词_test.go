@@ -16,7 +16,6 @@ func Test_reverseWords(t *testing.T) {
 		args args
 		want string
 	}{
-		// TODO: Add test cases.
 		{"t1", args{"the sky is blue"}, "blue is sky the"},
 		{"t2", args{"  hello world  "}, "world hello"},
 	}
@@ -38,7 +37,6 @@ func Test_reverseWords2(t *testing.T) {
 		args args
 		want string
 	}{
-		// TODO: Add test cases.
 		{"t1", args{"the sky is blue"}, "blue is sky the"},
 		{"t2", args{"  hello world  "}, "world hello"},
 	}
@@ -60,7 +58,6 @@ func Test_reverseWords3(t *testing.T) {
 		args args
 		want string
 	}{
-		// TODO: Add test cases.
 		{"t1", args{"the sky is blue"}, "blue is sky the"},
 		{"t2", args{"  hello world  "}, "world hello"},
 	}

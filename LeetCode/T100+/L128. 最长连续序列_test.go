@@ -16,7 +16,6 @@ func Test_longestConsecutive(t *testing.T) {
 		args    args
 		wantRet int
 	}{
-		// TODO: Add test cases.
 		{"t1", args{nums: []int{0, 3, 7, 2, 5, 8, 4, 6, 0, 1}}, 9},
 		{"t1", args{nums: []int{1, 2, 0, 1}}, 3},
 	}

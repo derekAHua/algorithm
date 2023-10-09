@@ -16,7 +16,6 @@ func Test_integerBreak(t *testing.T) {
 		args    args
 		wantRet int
 	}{
-		// TODO: Add test cases.
 		{"t1", args{10}, 36},
 	}
 	for _, tt := range tests {

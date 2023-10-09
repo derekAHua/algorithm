@@ -17,7 +17,6 @@ func Test_numDistinct(t *testing.T) {
 		args    args
 		wantRet int
 	}{
-		// TODO: Add test cases.
 		{"t1", args{"rabbbit", "rabit"}, 3},
 	}
 	for _, tt := range tests {
