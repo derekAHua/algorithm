@@ -10,6 +10,17 @@ func change(amount int, coins []int) int {
 			dp[i] += dp[i-v]
 		}
 	}
+	return dp[len(dp)-1]
+}
+
+func changeR3(amount int, coins []int) int {
+	dp := make([]int, amount+1)
+	dp[0] = 1
+	for _, v := range coins {
+		for i := v; i < len(dp); i++ {
+			dp[i] += dp[i-v]
+		}
+	}
 
 	return dp[len(dp)-1]
 }

@@ -7,6 +7,23 @@ func lastStoneWeightII(stones []int) int {
 	for _, v := range stones {
 		sum += v
 	}
+	target := sum >> 1
+	dp := make([]int, target+1)
+	for _, v := range stones {
+		for i := len(dp) - 1; i >= v; i-- {
+			if dp[i] < v+dp[i-v] {
+				dp[i] = v + dp[i-v]
+			}
+		}
+	}
+	return sum - dp[len(dp)-1]<<1
+}
+
+func lastStoneWeightIIR3(stones []int) int {
+	sum := 0
+	for _, v := range stones {
+		sum += v
+	}
 
 	target := sum / 2
 	dp := make([]int, target+1)

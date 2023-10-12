@@ -10,6 +10,25 @@ func coinChange(coins []int, amount int) int {
 		dp[i] = math.MaxInt32
 	}
 	dp[0] = 0
+	for _, v := range coins {
+		for i := v; i < len(dp); i++ {
+			if dp[i-v]+1 < dp[i] {
+				dp[i] = dp[i-v] + 1
+			}
+		}
+	}
+	if dp[amount] == math.MaxInt32 {
+		return -1
+	}
+	return dp[amount]
+}
+
+func coinChangeR2(coins []int, amount int) int {
+	dp := make([]int, amount+1)
+	for i := range dp {
+		dp[i] = math.MaxInt32
+	}
+	dp[0] = 0
 	for i := 1; i < len(dp); i++ {
 		for _, v := range coins {
 			if i < v {

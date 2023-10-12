@@ -11,6 +11,26 @@ func canPartition(nums []int) (ret bool) {
 	for _, v := range nums {
 		sum += v
 	}
+	if sum&1 == 1 {
+		return
+	}
+	target := sum >> 1
+	dp := make([]int, target+1)
+	for _, v := range nums {
+		for i := len(dp) - 1; i >= v; i-- {
+			if dp[i] < v+dp[i-v] {
+				dp[i] = v + dp[i-v]
+			}
+		}
+	}
+	return dp[len(dp)-1] == target
+}
+
+func canPartitionR4(nums []int) (ret bool) {
+	sum := 0
+	for _, v := range nums {
+		sum += v
+	}
 	if sum%2 == 1 {
 		return
 	}
